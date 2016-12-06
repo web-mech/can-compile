@@ -99,6 +99,18 @@ for(var version in expected) {
             done();
           });
         });
+
+        it('compiles Stache with local dependencies', function (done) {
+          compiler.compile({
+            filename: __dirname + '/fixtures/view.stache',
+            normalizer: normalizer,
+            version: version,
+            localDependencies: true
+          }, function (error, output) {
+            expect(output).to.be(expectedStache);
+            done();
+          });
+        });
       }
 
       it('compiles Mustache, normalizes view ids and use alternative file extension', function (done) {
